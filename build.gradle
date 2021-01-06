@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+}
+
+group 'com.anubis'
+version '1.0.0'
+
+targetCompatibility = '1.11'
+sourceCompatibility = '1.11'
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://papermc.io/repo/repository/maven-public/' }
+}
+
+dependencies {
+    compile 'org.jetbrains:annotations:16.0.2'
+    compile 'io.papermc:paperlib:1.0.6'
+
+    compileOnly 'org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT'
+}
+
+shadowJar {
+    relocate 'io.papermc.lib', 'com.wimbli.WorldBorder.paperlib'
+}
